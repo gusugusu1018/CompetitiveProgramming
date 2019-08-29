@@ -1,6 +1,6 @@
 #include <iostream>
 #include <vector>
-#include <cmath>
+#include <algorithm>
 using namespace std;
 int main() {
 	int N;
@@ -16,7 +16,7 @@ int main() {
 		for (int j = i+1; j < N; j++) {
 			for (int k = j+1; k < N; k++) {
 				int len = A[i] + A[j] + A[k];
-				int ma = max(A[i],max(A[j],A[k]));
+				int ma = max({A[i],A[j],A[k]});
 				int res = len - ma;
 				if (res > ma) {
 					ans = max(ans,len);
@@ -27,3 +27,4 @@ int main() {
 	cout << ans << endl;
 	return 0;
 }
+
