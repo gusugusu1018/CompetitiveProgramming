@@ -3,15 +3,13 @@
 #include <chrono>
 using namespace std;
 
-template<typename T> void insertSort(vector<T>& v) {
-	for (size_t i=1;i<v.size();i++) {
-		int j=i-1;
-		const auto temp = v[i];
-		while (j>=0 && v[j]>temp) { //Ascending
-			v[j+1]=v[j];
-			j--;
+template<typename T> void selectionSort(vector<T>& v) {
+	for (size_t i=0;i<v.size()-1;i++) {
+		size_t minj = i;
+		for (size_t j=i+1;j<v.size();j++) {
+			if (v[j] < v[minj]) minj = j;
 		}
-		v[j+1]=temp;
+		swap(v[i],v[minj]);
 	}
 }
 
@@ -33,13 +31,13 @@ template<typename T> bool checkSorted(const vector<T>& v){
 
 int main() {
 	const size_t size = 1000;
-	vector<float> v(size);
+	vector<int> v(size);
 	generateVector(v);
 	const auto timeStt = chrono::system_clock::now();
-	insertSort(v);
+	selectionSort(v);
 	const auto timeEnd = chrono::system_clock::now();
 	const double sortTime = chrono::duration_cast<chrono::microseconds >(timeEnd - timeStt).count();
-	cout << "check sort : " << (checkSorted(v)? "OK" : "NG") << endl;
-	cout << "time[ms]    : " << sortTime/1000.0 << endl;
+	cout << "check sort    : " << (checkSorted(v)? "OK" : "NG") << endl;
+	cout << "sort time[ms] : " << sortTime/1000.0 << endl;
 	return 0;
 }

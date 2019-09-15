@@ -4,9 +4,6 @@
 #include <chrono>
 using namespace std;
 constexpr int VECTOR_MAX = 10000;
-#define debug(var)  do{std::cout << #var << " : "; view(var);}while(0)
-template<typename T> void view(const vector<T>& v){ for(const auto& e : v) std::cout << e << " "; std::cout << std::endl; }
-template<typename T> void generateVector(vector<T>& v){ for(auto& e : v) e = rand()%VECTOR_MAX; }
 
 template<typename T> bool checkSorted(const vector<T>& v){
 	bool is_sorted = true;

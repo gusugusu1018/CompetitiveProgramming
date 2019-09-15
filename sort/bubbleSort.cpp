@@ -3,15 +3,16 @@
 #include <chrono>
 using namespace std;
 
-template<typename T> void insertSort(vector<T>& v) {
-	for (size_t i=1;i<v.size();i++) {
-		int j=i-1;
-		const auto temp = v[i];
-		while (j>=0 && v[j]>temp) { //Ascending
-			v[j+1]=v[j];
-			j--;
+template<typename T> void bubbleSort(vector<T>& v) {
+	bool sorting = true;
+	for (size_t i=0;sorting;i++) {
+		sorting = false;
+		for(size_t j=v.size()-1;j>=i+1;j--){
+			if(v[j]<v[j-1]){ //Ascending
+				swap(v[j],v[j-1]);
+				sorting = true;
+			}
 		}
-		v[j+1]=temp;
 	}
 }
 
@@ -33,13 +34,13 @@ template<typename T> bool checkSorted(const vector<T>& v){
 
 int main() {
 	const size_t size = 1000;
-	vector<float> v(size);
+	vector<int> v(size);
 	generateVector(v);
 	const auto timeStt = chrono::system_clock::now();
-	insertSort(v);
+	bubbleSort(v);
 	const auto timeEnd = chrono::system_clock::now();
 	const double sortTime = chrono::duration_cast<chrono::microseconds >(timeEnd - timeStt).count();
-	cout << "check sort : " << (checkSorted(v)? "OK" : "NG") << endl;
-	cout << "time[ms]    : " << sortTime/1000.0 << endl;
+	cout << "check sort    : " << (checkSorted(v)? "OK" : "NG") << endl;
+	cout << "sort time[ms] : " << sortTime/1000.0 << endl;
 	return 0;
 }
