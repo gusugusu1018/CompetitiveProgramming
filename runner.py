@@ -54,7 +54,7 @@ if __name__ == '__main__':
 						test_cmd += line
 					else:
 						if args.verbose or args.debug:
-							print('Correct Answer : ' + line + 'Program output : ' + ret.decode('utf-8'))
+							print('Correct Answer\n' + line + '\nProgram output\n' + ret.decode('utf-8'))
 						if not args.debug :
 							if line == ret.decode('utf-8'):
 								if args.verbose:

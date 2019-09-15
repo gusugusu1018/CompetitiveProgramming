@@ -7,15 +7,13 @@ int main() {
 	cin >> N;
 	vector<int> R(N);
 	for (auto& r: R) cin >> r;
-	int max = 0;
-	for (int i=0; i<N-1;i++) {
-		int diff = R[i+1] - R[i];
-		if (diff < 0) { //down
-			//initialize
-			max = 0;
-		} else { //up
-			max += diff;
-		}
-		cout << R[i] << " " << max << endl;
+	int maxv = -2000000000;
+	int minv = R[0];
+	for (int i=1; i<N;i++) {
+		maxv = max(maxv, R[i]-minv);
+		minv = min(minv, R[i]);
+		//cout << "minv : " << minv << ", maxv : " << maxv << endl;
 	}
+	cout << maxv << endl;
+	return 0;
 }
